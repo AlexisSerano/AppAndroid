@@ -9,29 +9,29 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Bienvenue !"
-        android:textSize="36sp"
+        android:text="Fais ton choix !"
+        android:textSize="28sp"
         android:textStyle="bold"
-        android:layout_marginBottom="16dp"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Que voulez-vous faire ?"
-        android:textSize="18sp"
         android:layout_marginBottom="48dp"/>
 
     <Button
-        android:id="@+id/btn_aller_connexion"
+        android:id="@+id/btn_choix_addition"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Se connecter"
+        android:text="Additions"
         android:layout_marginBottom="16dp"/>
 
     <Button
-        android:id="@+id/btn_aller_inscription"
+        android:id="@+id/btn_choix_multiplication"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="S'inscrire" />
+        android:text="Multiplications"
+        android:layout_marginBottom="48dp"/>
+
+    <Button
+        android:id="@+id/btn_retour_choix_matiere"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Retour" />
 
 </LinearLayout>

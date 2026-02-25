@@ -6,32 +6,33 @@
     android:gravity="center"
     android:padding="32dp">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <EditText
+        android:id="@+id/et_identifiant_co"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Bienvenue !"
-        android:textSize="36sp"
-        android:textStyle="bold"
+        android:hint="Identifiant"
+        android:inputType="text"
         android:layout_marginBottom="16dp"/>
 
-    <TextView
-        android:layout_width="wrap_content"
+    <EditText
+        android:id="@+id/et_mdp_co"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Que voulez-vous faire ?"
-        android:textSize="18sp"
+        android:hint="Mot de passe"
+        android:inputType="textPassword"
         android:layout_marginBottom="48dp"/>
 
     <Button
-        android:id="@+id/btn_aller_connexion"
+        android:id="@+id/btn_valider_connexion"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Se connecter"
+        android:text="Connexion"
         android:layout_marginBottom="16dp"/>
 
     <Button
-        android:id="@+id/btn_aller_inscription"
-        android:layout_width="match_parent"
+        android:id="@+id/btn_retour_connexion"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="S'inscrire" />
+        android:text="Retour" />
 
 </LinearLayout>

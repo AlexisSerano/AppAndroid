@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="32dp">
+
+    <EditText
+        android:id="@+id/et_identifiant_inscription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Identifiant"
+        android:inputType="text"
+        android:layout_marginBottom="16dp"/>
+
+    <EditText
+        android:id="@+id/et_mdp_inscription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Mot de passe"
+        android:inputType="textPassword"
+        android:layout_marginBottom="16dp"/>
+
+    <EditText
+        android:id="@+id/et_mdp_repetition"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Répéter mot de passe"
+        android:inputType="textPassword"
+        android:layout_marginBottom="48dp"/>
+
+    <Button
+        android:id="@+id/btn_valider_inscription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="S'inscrire"
+        android:layout_marginBottom="16dp"/>
+
+    <Button
+        android:id="@+id/btn_retour_inscription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Retour" />
+
+</LinearLayout>

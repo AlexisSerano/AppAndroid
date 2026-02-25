@@ -9,29 +9,31 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Bienvenue !"
+        android:text="Résultats"
+        android:textColor="#E53935"
         android:textSize="36sp"
         android:textStyle="bold"
         android:layout_marginBottom="16dp"/>
 
     <TextView
+        android:id="@+id/tv_score_culture"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Que voulez-vous faire ?"
-        android:textSize="18sp"
+        android:text="Record : 5/10"
+        android:textSize="20sp"
         android:layout_marginBottom="48dp"/>
 
     <Button
-        android:id="@+id/btn_aller_connexion"
+        android:id="@+id/btn_menu_depuis_culture"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Se connecter"
+        android:text="Menu des Exercices"
         android:layout_marginBottom="16dp"/>
 
     <Button
-        android:id="@+id/btn_aller_inscription"
+        android:id="@+id/btn_recommencer_culture"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="S'inscrire" />
+        android:text="Recommencer" />
 
 </LinearLayout>

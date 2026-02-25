@@ -13,6 +13,39 @@
         android:theme="@style/Theme.Loustic"
         tools:targetApi="31">
         <activity
+            android:name=".ResultatExerciceCultureG"
+            android:exported="false" />
+        <activity
+            android:name=".ResultatExerciceMultiplication"
+            android:exported="false" />
+        <activity
+            android:name=".ResultatExerciceAddition"
+            android:exported="false" />
+        <activity
+            android:name=".ExerciceCultureG"
+            android:exported="false" />
+        <activity
+            android:name=".ExerciceMultiplication"
+            android:exported="false" />
+        <activity
+            android:name=".ExerciceAddition"
+            android:exported="false" />
+        <activity
+            android:name=".ChoixMatiere"
+            android:exported="false" />
+        <activity
+            android:name=".MenuExercices"
+            android:exported="false" />
+        <activity
+            android:name=".Inscription"
+            android:exported="false" />
+        <activity
+            android:name=".Connexion"
+            android:exported="false" />
+        <activity
+            android:name=".ChoixConnexion"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

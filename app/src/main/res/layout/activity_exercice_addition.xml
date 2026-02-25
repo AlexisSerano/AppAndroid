@@ -7,31 +7,34 @@
     android:padding="32dp">
 
     <TextView
+        android:id="@+id/tv_calcul_addition"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Bienvenue !"
-        android:textSize="36sp"
+        android:text="27 + 32"
+        android:textSize="40sp"
         android:textStyle="bold"
-        android:layout_marginBottom="16dp"/>
+        android:layout_marginBottom="48dp"/>
 
-    <TextView
-        android:layout_width="wrap_content"
+    <EditText
+        android:id="@+id/et_reponse_addition"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:text="Que voulez-vous faire ?"
-        android:textSize="18sp"
+        android:hint="Votre réponse"
+        android:inputType="number"
+        android:textAlignment="center"
         android:layout_marginBottom="48dp"/>
 
     <Button
-        android:id="@+id/btn_aller_connexion"
+        android:id="@+id/btn_valider_addition"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Se connecter"
+        android:text="Valider"
         android:layout_marginBottom="16dp"/>
 
     <Button
-        android:id="@+id/btn_aller_inscription"
-        android:layout_width="match_parent"
+        android:id="@+id/btn_quitter_addition"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="S'inscrire" />
+        android:text="Quitter" />
 
 </LinearLayout>
