@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -7,7 +8,7 @@
     android:padding="32dp">
 
     <EditText
-        android:id="@+id/et_identifiant_inscription"
+        android:id="@+id/inputIdentifiant"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Identifiant"
@@ -15,7 +16,7 @@
         android:layout_marginBottom="16dp"/>
 
     <EditText
-        android:id="@+id/et_mdp_inscription"
+        android:id="@+id/inputMdp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Mot de passe"
@@ -23,7 +24,7 @@
         android:layout_marginBottom="16dp"/>
 
     <EditText
-        android:id="@+id/et_mdp_repetition"
+        android:id="@+id/inputMdpConfirm"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Répéter mot de passe"
@@ -31,14 +32,14 @@
         android:layout_marginBottom="48dp"/>
 
     <Button
-        android:id="@+id/btn_valider_inscription"
+        android:id="@+id/btnInscription"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="S'inscrire"
         android:layout_marginBottom="16dp"/>
 
     <Button
-        android:id="@+id/btn_retour_inscription"
+        android:id="@+id/btnRetour"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Retour" />

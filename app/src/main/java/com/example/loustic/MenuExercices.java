@@ -1,6 +1,10 @@
 package com.example.loustic;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,8 +12,13 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-public class MenuExercices extends AppCompatActivity {
+public class MenuExercices extends AppCompatActivity implements View.OnClickListener {
 
+    Button btnDeco;
+    Button btnMath;
+    Button btnCultureG;
+
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,5 +29,31 @@ public class MenuExercices extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        btnDeco = findViewById(R.id.btnDeco);
+        btnMath = findViewById(R.id.btnMath);
+        btnCultureG = findViewById(R.id.btnCultureG);
+
+
+        btnDeco.setOnClickListener(this);
+        btnMath.setOnClickListener(this);
+        btnCultureG.setOnClickListener(this);
+
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (v.getId() == btnDeco.getId()){
+            Intent intent = new Intent(MenuExercices.this, MainActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+        }else if (v.getId() == btnMath.getId()){
+            Intent intent = new Intent(MenuExercices.this, ChoixMatiere.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+        }else if (v.getId() == btnCultureG.getId()){
+            Intent intent = new Intent(MenuExercices.this, ExerciceCultureG.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+        }
     }
 }

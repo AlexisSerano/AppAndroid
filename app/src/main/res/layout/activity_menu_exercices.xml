@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -8,48 +9,50 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="78dp"
+        android:layout_marginBottom="48dp"
         android:gravity="end"
-        android:layout_marginBottom="48dp">
+        android:orientation="horizontal">
 
         <Button
-            android:id="@+id/btn_deconnexion"
+            android:id="@+id/btnDeco"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:text="Déconnexion" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="center">
+        android:gravity="bottom"
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/tv_salutation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
             android:text="Salut Robin !"
             android:textSize="28sp"
-            android:textStyle="bold"
-            android:layout_marginBottom="8dp"/>
+            android:textStyle="bold" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="48dp"
             android:text="on s'entraîne sur quoi aujourd'hui ?"
-            android:textSize="16sp"
             android:textAlignment="center"
-            android:layout_marginBottom="48dp"/>
+            android:textSize="16sp" />
 
         <Button
-            android:id="@+id/btn_go_maths"
+            android:id="@+id/btnMath"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Exercice de Math"
-            android:layout_marginBottom="16dp"/>
+            android:layout_marginBottom="16dp"
+            android:text="Exercice de Math" />
 
         <Button
-            android:id="@+id/btn_go_culture_g"
+            android:id="@+id/btnCultureG"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Exercice de culture g" />

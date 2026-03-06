@@ -1,21 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
     android:padding="32dp">
 
-    <EditText
-        android:id="@+id/et_identifiant_co"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Identifiant"
-        android:inputType="text"
-        android:layout_marginBottom="16dp"/>
 
     <EditText
-        android:id="@+id/et_mdp_co"
+        android:id="@+id/inputIdentifiant"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:hint="Identifiant"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/inputMdp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Mot de passe"
@@ -23,14 +25,23 @@
         android:layout_marginBottom="48dp"/>
 
     <Button
-        android:id="@+id/btn_valider_connexion"
+        android:id="@+id/btnPass"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Pass"
+        android:layout_marginBottom="16dp"/>
+
+
+    <Button
+        android:id="@+id/btnConnexion"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Connexion"
         android:layout_marginBottom="16dp"/>
 
+
     <Button
-        android:id="@+id/btn_retour_connexion"
+        android:id="@+id/btnRetour"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Retour" />

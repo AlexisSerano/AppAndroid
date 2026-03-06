@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -15,21 +16,21 @@
         android:layout_marginBottom="48dp"/>
 
     <Button
-        android:id="@+id/btn_choix_addition"
+        android:id="@+id/btnAdditions"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Additions"
         android:layout_marginBottom="16dp"/>
 
     <Button
-        android:id="@+id/btn_choix_multiplication"
+        android:id="@+id/btnMultiplications"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Multiplications"
         android:layout_marginBottom="48dp"/>
 
     <Button
-        android:id="@+id/btn_retour_choix_matiere"
+        android:id="@+id/btnRetour"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Retour" />
