@@ -12,8 +12,13 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.loustic.db.DatabaseClient;
+
+
 public class MenuExercices extends AppCompatActivity implements View.OnClickListener {
 
+    android.widget.TextView tv_salutation;
+    private DatabaseClient mDb;
     Button btnDeco;
     Button btnMath;
     Button btnCultureG;
@@ -29,6 +34,14 @@ public class MenuExercices extends AppCompatActivity implements View.OnClickList
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        mDb = DatabaseClient.getInstance(getApplicationContext());
+        tv_salutation = findViewById(R.id.tv_salutation);
+        android.content.SharedPreferences sharedPreferences = getSharedPreferences("SessionLoustic", MODE_PRIVATE);
+        String currentUser = sharedPreferences.getString("USER_ID", "Invité");
+        tv_salutation.setText("Bonjour !");
+
+
         btnDeco = findViewById(R.id.btnDeco);
         btnMath = findViewById(R.id.btnMath);
         btnCultureG = findViewById(R.id.btnCultureG);

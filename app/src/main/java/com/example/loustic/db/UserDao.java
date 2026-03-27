@@ -28,4 +28,9 @@ public interface UserDao {
     @Update
     void update(User user);
 
+    @Query("SELECT * FROM user WHERE identifiant = :id AND mdp = :password LIMIT 1")
+    User login(String id, String password);
+    @Query("SELECT * FROM user WHERE identifiant = :id LIMIT 1")
+    User exist(String id);
+
 }

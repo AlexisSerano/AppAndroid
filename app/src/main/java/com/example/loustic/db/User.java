@@ -2,6 +2,7 @@ package com.example.loustic.db;
 
 
 
+import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
@@ -9,6 +10,8 @@ import androidx.room.PrimaryKey;
 public class User {
 
 
+    @PrimaryKey
+    @NonNull
     private String identifiant;
     private String mdp;
 
@@ -16,7 +19,7 @@ public class User {
      * Getters and Setters
      * */
 
-
+    @NonNull
     public String getIdentifiant() {
         return identifiant;
     }

@@ -4,38 +4,81 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="center"
-    android:padding="32dp">
+    android:padding="24dp"
+    android:background="#F8F9FA"> <TextView
+    android:id="@+id/tv_score"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="Score : 0/10"
+    android:textAlignment="viewEnd"
+    android:textSize="18sp"
+    android:textStyle="bold"
+    android:textColor="#333333"
+    android:layout_marginBottom="32dp"/>
 
     <TextView
-        android:id="@+id/tv_calcul_addition"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="27 + 32"
-        android:textSize="40sp"
-        android:textStyle="bold"
-        android:layout_marginBottom="48dp"/>
-
-    <EditText
-        android:id="@+id/et_reponse_addition"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:hint="Votre réponse"
-        android:inputType="number"
-        android:textAlignment="center"
-        android:layout_marginBottom="48dp"/>
-
-    <Button
-        android:id="@+id/btn_valider_addition"
+        android:id="@+id/tv_question_culture"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Valider"
-        android:layout_marginBottom="16dp"/>
+        android:text="Quelle est la capitale de l'Italie ?"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:layout_marginBottom="48dp"/>
 
     <Button
-        android:id="@+id/btn_quitter_addition"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Quitter" />
+        android:id="@+id/btn_reponse1"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:text="Réponse 1"
+        android:textSize="18sp"
+        android:layout_marginBottom="16dp"
+        android:backgroundTint="#2196F3"
+        android:textColor="#FFFFFF"/>
+
+    <Button
+        android:id="@+id/btn_reponse2"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:text="Réponse 2"
+        android:textSize="18sp"
+        android:layout_marginBottom="16dp"
+        android:backgroundTint="#2196F3"
+        android:textColor="#FFFFFF"/>
+
+    <Button
+        android:id="@+id/btn_reponse3"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:text="Réponse 3"
+        android:textSize="18sp"
+        android:layout_marginBottom="16dp"
+        android:backgroundTint="#2196F3"
+        android:textColor="#FFFFFF"/>
+
+    <Button
+        android:id="@+id/btn_reponse4"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:text="Réponse 4"
+        android:textSize="18sp"
+        android:layout_marginBottom="16dp"
+        android:backgroundTint="#2196F3"
+        android:textColor="#FFFFFF"/>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <Button
+        android:id="@+id/btn_quitter_culture"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:text="Quitter l'exercice"
+        android:textSize="16sp"
+        android:backgroundTint="#F44336"
+        android:textColor="#FFFFFF" />
 
 </LinearLayout>

@@ -1,8 +1,11 @@
 package com.example.loustic.db;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -12,14 +15,18 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.loustic.Connexion;
+import com.example.loustic.MainActivity;
 import com.example.loustic.R;
 
-public class AddUserActivity extends AppCompatActivity {
+public class AddUserActivity extends AppCompatActivity implements View.OnClickListener {
     private DatabaseClient mDb;
 
     EditText inputIdentifiant;
     EditText inputMdp;
     EditText inputMdpConfirm;
+    Button btnInscription;
+    Button btnRetour;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -38,7 +45,11 @@ public class AddUserActivity extends AppCompatActivity {
         inputIdentifiant = findViewById(R.id.inputIdentifiant);
         inputMdp = findViewById(R.id.inputMdp);
         inputMdpConfirm = findViewById(R.id.inputMdpConfirm);
+        btnInscription = findViewById(R.id.btnInscription);
+        btnRetour = findViewById(R.id.btnRetour);
 
+        btnInscription.setOnClickListener(this);
+        btnRetour.setOnClickListener(this);
 
 
 
@@ -56,24 +67,24 @@ public class AddUserActivity extends AppCompatActivity {
 
         // Vérifier les informations fournies par l'utilisateur
         if (identifiant.isEmpty()) {
-            inputIdentifiant.setError("Task required");
+            inputIdentifiant.setError("l'identifiant est vide");
             inputIdentifiant.requestFocus();
             return;
         }
 
         if (mdp.isEmpty()) {
-            inputMdp.setError("Desc required");
+            inputMdp.setError("le mdp est vide");
             inputMdp.requestFocus();
             return;
         }
 
         if (mdpconfirm.isEmpty()) {
-            inputMdpConfirm.setError("Desc required");
+            inputMdpConfirm.setError("la confirmation du mdp est vide");
             inputMdpConfirm.requestFocus();
             return;
         }
 
-        if (mdpconfirm != mdp) {
+        if (!mdpconfirm.equals(mdp)) {
             inputMdpConfirm.setError("le mdp n'est pas le meme dans les 2 champs");
             inputMdpConfirm.requestFocus();
             return;
@@ -86,29 +97,42 @@ public class AddUserActivity extends AppCompatActivity {
 
             @Override
             protected User doInBackground(Void... voids) {
+                User userExist = mDb.getAppDatabase().userDao().exist(identifiant);
+                if (userExist != null){
+                    inputIdentifiant.setError("l'identifiant est déja utilisé veuillez en choisir un autre");
+                    inputIdentifiant.setText("");
+                }else {
+                    // creating a user
+                    User user = new User();
+                    user.setIdentifiant(identifiant);
+                    user.setMdp(mdp);
 
-                // creating a user
-                User user = new User();
-                user.setIdentifiant(identifiant);
-                user.setMdp(mdp);
-
-                // adding to database
-                long id = mDb.getAppDatabase()
-                        .userDao()
-                        .insert(user);
+                    // adding to database
+                    long id = mDb.getAppDatabase()
+                            .userDao()
+                            .insert(user);
 
 
 
 
-                return user;
+                    return user;
+                }
+
+            return null;
             }
 
             @Override
             protected void onPostExecute(User user) {
                 super.onPostExecute(user);
 
+                if (user == null){
+                    return;
+                }
                 // Quand la tache est créée, on arrête l'activité AddTaskActivity (on l'enleve de la pile d'activités)
                 setResult(RESULT_OK);
+                Intent intent = new Intent(AddUserActivity.this, Connexion.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
                 finish();
                 Toast.makeText(getApplicationContext(), "Saved", Toast.LENGTH_LONG).show();
             }
@@ -118,5 +142,18 @@ public class AddUserActivity extends AppCompatActivity {
         // IMPORTANT bien penser à executer la demande asynchrone
         SaveUser su = new SaveUser();
         su.execute();
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (v.getId() == btnInscription.getId()){
+            saveTask();
+
+        }
+        else if (v.getId() == btnRetour.getId()){
+            Intent intent= new Intent(AddUserActivity.this, MainActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+        }
     }
 }
