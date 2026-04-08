@@ -7,6 +7,7 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+// page de difficulté qui sert a choisir le niveau avant de lancer l' exercice
 public class ChoixDifficulte extends AppCompatActivity implements View.OnClickListener {
 
     Button btnNiveau1, btnNiveau2, btnNiveau3;
@@ -25,7 +26,7 @@ public class ChoixDifficulte extends AppCompatActivity implements View.OnClickLi
         btnNiveau2.setOnClickListener(this);
         btnNiveau3.setOnClickListener(this);
 
-        // On récupère la matière envoyée par la page précédente
+        // on recupere la matiere que l'ecran precedent nous a donné dans l'intent
         matiereChoisie = getIntent().getStringExtra("MATIERE");
     }
 
@@ -33,13 +34,14 @@ public class ChoixDifficulte extends AppCompatActivity implements View.OnClickLi
     public void onClick(View v) {
         int difficulte = 1;
 
+        // on regarde quel bouton a ete cliqué pour fixer la variable
         if (v.getId() == btnNiveau1.getId()) difficulte = 1;
         else if (v.getId() == btnNiveau2.getId()) difficulte = 2;
         else if (v.getId() == btnNiveau3.getId()) difficulte = 3;
 
         Intent intent = null;
 
-
+        // on aiguille vers la bonne page de jeu selon la matiere qu'on avait recuperee au début
         if (matiereChoisie.equals("addition")) {
             intent = new Intent(ChoixDifficulte.this, ExerciceAddition.class);
         } else if (matiereChoisie.equals("multiplication")) {
@@ -49,6 +51,7 @@ public class ChoixDifficulte extends AppCompatActivity implements View.OnClickLi
         }
 
         if (intent != null) {
+            // on oublie pas d'envoyer la difficulte pour que l'exo charge les bonnes questions
             intent.putExtra("DIFFICULTE", difficulte);
             startActivity(intent);
         }

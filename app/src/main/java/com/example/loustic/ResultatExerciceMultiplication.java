@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+// ecran de fin pour les multiplications avec affichage du score decroche par l'eleve
 public class ResultatExerciceMultiplication extends AppCompatActivity implements View.OnClickListener {
 
     TextView tvScore;
@@ -18,6 +19,7 @@ public class ResultatExerciceMultiplication extends AppCompatActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_resultat_exercice_multiplication);
 
+        // initialisation des composants graphiques
         tvScore = findViewById(R.id.tv_score_multiplication);
         btnMenu = findViewById(R.id.btn_menu_depuis_multiplication);
         btnRecommencer = findViewById(R.id.btn_recommencer_multiplication);
@@ -25,6 +27,7 @@ public class ResultatExerciceMultiplication extends AppCompatActivity implements
         btnMenu.setOnClickListener(this);
         btnRecommencer.setOnClickListener(this);
 
+        // on lit l'extra de l'intent pour afficher le vrai score et pas un vieux 0
         int score = getIntent().getIntExtra("SCORE", 0);
         tvScore.setText("Score : " + score + " / 10");
     }
@@ -32,11 +35,13 @@ public class ResultatExerciceMultiplication extends AppCompatActivity implements
     @Override
     public void onClick(View v) {
         if (v.getId() == btnRecommencer.getId()) {
+            // le joueur veut retenter on le dirige vers le choix du niveau
             Intent intent = new Intent(this, ChoixDifficulte.class);
             intent.putExtra("MATIERE", "multiplication");
             startActivity(intent);
             finish();
         } else if (v.getId() == btnMenu.getId()) {
+            // redirection sur le menu principal des jeux
             Intent intent = new Intent(this, MenuExercices.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);

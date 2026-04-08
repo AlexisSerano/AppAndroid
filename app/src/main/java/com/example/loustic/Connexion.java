@@ -17,6 +17,7 @@ import androidx.core.view.WindowInsetsCompat;
 import com.example.loustic.db.DatabaseClient;
 import com.example.loustic.db.User;
 
+// page de login pour que les eleves se connectent a leur profil
 public class Connexion extends AppCompatActivity implements View.OnClickListener {
 
     private DatabaseClient mDb;
@@ -37,6 +38,7 @@ public class Connexion extends AppCompatActivity implements View.OnClickListener
             return insets;
         });
 
+        // on recupere l'instance de la db locale
         mDb = DatabaseClient.getInstance(getApplicationContext());
 
         inputIdentifiant = findViewById(R.id.inputIdentifiant);
@@ -60,6 +62,7 @@ public class Connexion extends AppCompatActivity implements View.OnClickListener
         final String mdp = inputMdp.getText().toString().trim();
 
         // Vérifier les informations fournies par l'utilisateur
+        // on verifie que rien n'est vide sinon on bloque tout de suite
         if (identifiant.isEmpty()) {
             inputIdentifiant.setError("veuillez remplir l'identifiant");
             inputIdentifiant.requestFocus();
@@ -81,7 +84,7 @@ public class Connexion extends AppCompatActivity implements View.OnClickListener
             @Override
             protected User doInBackground(Void... voids) {
 
-
+                // on demande au dao de verifier si la combinaison pseudo et mdp existe
                 return mDb.getAppDatabase().userDao().login(identifiant, mdp);
 
 
@@ -91,16 +94,17 @@ public class Connexion extends AppCompatActivity implements View.OnClickListener
             protected void onPostExecute(User user) {
                 super.onPostExecute(user);
 
+                // de retour sur l'ui on regarde le resultat de la requete
                 if (user != null) {
                     Toast.makeText(getApplicationContext(), "Connexion réussie !", Toast.LENGTH_SHORT).show();
 
-
+                    // tout est good on l'envoie sur le menu des jeux
                     Intent intent = new Intent(Connexion.this, MenuExercices.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
                     finish();
                 } else {
-
+                    // pseudo ou mdp faux on vide juste le champ mdp pour qu'il retente
                     Toast.makeText(getApplicationContext(), "Identifiant ou mot de passe incorrect", Toast.LENGTH_LONG).show();
                     inputMdp.setText(""); // On vide le champ du mot de passe
                 }

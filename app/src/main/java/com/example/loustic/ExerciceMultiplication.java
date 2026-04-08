@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+// activite qui gere la logique du quiz pour les multiplications
 public class ExerciceMultiplication extends AppCompatActivity implements View.OnClickListener {
 
     private TextView tvScore;
@@ -31,6 +32,7 @@ public class ExerciceMultiplication extends AppCompatActivity implements View.On
 
     private DatabaseClient mDb;
     private List<Question> listeQuestions;
+    // variables pour suivre l'etat de la partie en cours
     private int indexQuestionActuelle = 0;
     private int score = 0;
     private String bonneReponseActuelle = "";
@@ -49,6 +51,7 @@ public class ExerciceMultiplication extends AppCompatActivity implements View.On
             return insets;
         });
 
+        // on recupere le parametre de difficulte envoye par l'intent precedent
         difficulteActuelle = getIntent().getIntExtra("DIFFICULTE", 1);
 
         mDb = DatabaseClient.getInstance(getApplicationContext());
@@ -71,6 +74,7 @@ public class ExerciceMultiplication extends AppCompatActivity implements View.On
     }
 
     private void chargerQuestions() {
+        // utilisation d'un asynctask pour faire l'appel a la base de donnees sans bloquer le thread principal
         class LoadQuestionsTask extends AsyncTask<Void, Void, List<Question>> {
             @Override
             protected List<Question> doInBackground(Void... voids) {
@@ -94,6 +98,7 @@ public class ExerciceMultiplication extends AppCompatActivity implements View.On
         task.execute();
     }
 
+    // met a jour l'interface avec les donnees de la question courante
     private void afficherQuestion() {
         if (indexQuestionActuelle < listeQuestions.size()) {
 
@@ -110,6 +115,7 @@ public class ExerciceMultiplication extends AppCompatActivity implements View.On
             reponsesMelangees.add(questionEnCours.getMauvaiseReponse2());
             reponsesMelangees.add(questionEnCours.getMauvaiseReponse3());
 
+            // on melange le tableau pour rendre la position de la bonne reponse aleatoire
             Collections.shuffle(reponsesMelangees);
 
             btnReponse1.setText(reponsesMelangees.get(0));
@@ -118,6 +124,7 @@ public class ExerciceMultiplication extends AppCompatActivity implements View.On
             btnReponse4.setText(reponsesMelangees.get(3));
 
         } else {
+            // fin de la liste on prepare l'intent vers la page des resultats avec les stats
             Intent intent = new Intent(ExerciceMultiplication.this, ResultatExerciceMultiplication.class);
             intent.putExtra("SCORE", score);
             intent.putExtra("DIFFICULTE", difficulteActuelle);
@@ -128,6 +135,7 @@ public class ExerciceMultiplication extends AppCompatActivity implements View.On
         }
     }
 
+    // verifie la validite de la reponse et incremente le score si necessaire
     private void verifierReponse(String reponseChoisie) {
         if (reponseChoisie.equals(bonneReponseActuelle)) {
             score++;

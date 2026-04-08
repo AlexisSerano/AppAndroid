@@ -14,7 +14,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.example.loustic.db.DatabaseClient;
 
-
+// menu de navigation principal accessible apres la connexion
 public class MenuExercices extends AppCompatActivity implements View.OnClickListener {
 
     android.widget.TextView tv_salutation;
@@ -37,8 +37,7 @@ public class MenuExercices extends AppCompatActivity implements View.OnClickList
 
         mDb = DatabaseClient.getInstance(getApplicationContext());
         tv_salutation = findViewById(R.id.tv_salutation);
-        android.content.SharedPreferences sharedPreferences = getSharedPreferences("SessionLoustic", MODE_PRIVATE);
-        String currentUser = sharedPreferences.getString("USER_ID", "Invité");
+
         tv_salutation.setText("Bonjour !");
 
 
@@ -56,6 +55,7 @@ public class MenuExercices extends AppCompatActivity implements View.OnClickList
     @Override
     public void onClick(View v) {
         if (v.getId() == btnDeco.getId()){
+            // pour la deconnexion on retourne a l'accueil en nettoyant la pile
             Intent intent = new Intent(MenuExercices.this, MainActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
@@ -64,6 +64,7 @@ public class MenuExercices extends AppCompatActivity implements View.OnClickList
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
         }else if (v.getId() == btnCultureG.getId()){
+            // pour culture g on saute l'etape matiere et on envoie direct vers la difficulte
             Intent intent = new Intent(MenuExercices.this, ChoixDifficulte.class);
             intent.putExtra("MATIERE", "culture_g");
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

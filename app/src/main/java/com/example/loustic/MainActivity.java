@@ -12,6 +12,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+// activite de lancement qui sert de point d'entree a l'application
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     Button btnConnexion;
@@ -42,6 +43,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
+        // aiguillage basique vers la page souhaitee via des intents
         if (v.getId() == btnConnexion.getId()){
             Intent intent = new Intent(MainActivity.this,Connexion.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

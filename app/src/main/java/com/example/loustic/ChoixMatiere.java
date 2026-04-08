@@ -12,6 +12,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+// pages intermediaire pour separer les differents exercices de maths
 public class ChoixMatiere extends AppCompatActivity implements View.OnClickListener {
 
     Button btnAdditions;
@@ -41,6 +42,7 @@ public class ChoixMatiere extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
+        // on redirige vers l'ecran de difficulte en lui donnant la matiere choisie
         if (v.getId() == btnAdditions.getId()){
             Intent intent = new Intent(ChoixMatiere.this, ChoixDifficulte.class);
             intent.putExtra("MATIERE", "addition");
@@ -52,6 +54,7 @@ public class ChoixMatiere extends AppCompatActivity implements View.OnClickListe
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
         }else if (v.getId() == btnRetour.getId()){
+            // on retourne au menu precedent
             Intent intent = new Intent(ChoixMatiere.this, MenuExercices.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);

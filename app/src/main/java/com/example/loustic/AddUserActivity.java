@@ -18,6 +18,7 @@ import androidx.core.view.WindowInsetsCompat;
 import com.example.loustic.db.DatabaseClient;
 import com.example.loustic.db.User;
 
+// page pour gérer l'inscription d'un nouvel élève
 public class AddUserActivity extends AppCompatActivity implements View.OnClickListener {
     private DatabaseClient mDb;
 
@@ -39,14 +40,17 @@ public class AddUserActivity extends AppCompatActivity implements View.OnClickLi
             return insets;
         });
 
+        // on récupère l'instance de notre base de données locale
         mDb = DatabaseClient.getInstance(getApplicationContext());
 
+        // on chope tous les champs texte et les boutons de l'interface
         inputIdentifiant = findViewById(R.id.inputIdentifiant);
         inputMdp = findViewById(R.id.inputMdp);
         inputMdpConfirm = findViewById(R.id.inputMdpConfirm);
         btnInscription = findViewById(R.id.btnInscription);
         btnRetour = findViewById(R.id.btnRetour);
 
+        // on écoute les clics
         btnInscription.setOnClickListener(this);
         btnRetour.setOnClickListener(this);
 
@@ -65,6 +69,7 @@ public class AddUserActivity extends AppCompatActivity implements View.OnClickLi
         final String mdpconfirm = inputMdpConfirm.getText().toString().trim();
 
         // Vérifier les informations fournies par l'utilisateur
+        // on check d'abord si tout est bien rempli pour éviter de faire planter la db
         if (identifiant.isEmpty()) {
             inputIdentifiant.setError("l'identifiant est vide");
             inputIdentifiant.requestFocus();
@@ -83,6 +88,7 @@ public class AddUserActivity extends AppCompatActivity implements View.OnClickLi
             return;
         }
 
+        //  sécurité pour être sûr qu'il a pas fait une faute de frappe dans son mdp
         if (!mdpconfirm.equals(mdp)) {
             inputMdpConfirm.setError("le mdp n'est pas le meme dans les 2 champs");
             inputMdpConfirm.requestFocus();
@@ -92,15 +98,17 @@ public class AddUserActivity extends AppCompatActivity implements View.OnClickLi
         /**
          * Création d'une classe asynchrone pour sauvegarder la tache donnée par l'utilisateur
          */
+        // on fait la requête en arrière plan pour pas geler l'interface du tel
         class SaveUser extends AsyncTask<Void, Void, User> {
 
             @Override
             protected User doInBackground(Void... voids) {
 
+                // on regarde  si le pseudo est pas déjà pris
                 User userExist = mDb.getAppDatabase().userDao().exist(identifiant);
 
                 if (userExist != null){
-
+                    // si il existe on arrete la fonction
                     return null;
                 } else {
                     // creating a user
@@ -109,6 +117,7 @@ public class AddUserActivity extends AppCompatActivity implements View.OnClickLi
                     user.setMdp(mdp);
 
 
+                    // le pseudo est libre on met le nouvel utilisateur dans la table
                     long id = mDb.getAppDatabase().userDao().insert(user);
 
                     return user;
@@ -122,6 +131,7 @@ public class AddUserActivity extends AppCompatActivity implements View.OnClickLi
 
                 if (user == null){
 
+                    //  on affiche l'erreur direct sur le champ de texte
                     inputIdentifiant.setError("l'identifiant est déja utilisé veuillez en choisir un autre");
                     inputIdentifiant.setText("");
                     inputIdentifiant.requestFocus();
@@ -139,12 +149,14 @@ public class AddUserActivity extends AppCompatActivity implements View.OnClickLi
         }
 
 
+        // on declenche la tâche asynchrone
         SaveUser su = new SaveUser();
         su.execute();
     }
 
     @Override
     public void onClick(View v) {
+        // gestion classique des clics pour savoir sur quoi on a appuyé
         if (v.getId() == btnInscription.getId()){
             saveTask();
 

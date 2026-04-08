@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+// activite principale pour gerer le deroulement du quiz d'addition
 public class ExerciceAddition extends AppCompatActivity implements View.OnClickListener {
 
 
@@ -32,6 +33,7 @@ public class ExerciceAddition extends AppCompatActivity implements View.OnClickL
 
     private DatabaseClient mDb;
     private List<Question> listeQuestions;
+    // variables pour suivre la progression de la partie
     private int indexQuestionActuelle = 0;
     private int score = 0;
     private String bonneReponseActuelle = "";
@@ -50,6 +52,7 @@ public class ExerciceAddition extends AppCompatActivity implements View.OnClickL
             return insets;
         });
 
+        // on recupere le niveau choisi dans l'ecran precedent pour filtrer la db
         difficulteActuelle = getIntent().getIntExtra("DIFFICULTE", 1);
 
         mDb = DatabaseClient.getInstance(getApplicationContext());
@@ -72,9 +75,11 @@ public class ExerciceAddition extends AppCompatActivity implements View.OnClickL
     }
 
     private void chargerQuestions() {
+        // on utilise asynctask pour faire la requete sans figer l'ecran principal
         class LoadQuestionsTask extends AsyncTask<Void, Void, List<Question>> {
             @Override
             protected List<Question> doInBackground(Void... voids) {
+                // on cherche les questions qui correspondent a la bonne matiere et bonne difficulte
                 return mDb.getAppDatabase().questionDao().getRandomQuestions("addition", difficulteActuelle);
             }
 
@@ -95,7 +100,9 @@ public class ExerciceAddition extends AppCompatActivity implements View.OnClickL
         task.execute();
     }
 
+    // methode appelee a chaque fois qu'on passe a la question suivante
     private void afficherQuestion() {
+        // on verifie qu'il reste des questions a poser dans la liste
         if (indexQuestionActuelle < listeQuestions.size()) {
 
             tvScore.setText("Score : " + score + " / " + listeQuestions.size());
@@ -103,14 +110,17 @@ public class ExerciceAddition extends AppCompatActivity implements View.OnClickL
             Question questionEnCours = listeQuestions.get(indexQuestionActuelle);
             tvQuestion.setText(questionEnCours.getEnonce());
 
+            // on garde en memoire la bonne reponse pour la methode de verification
             bonneReponseActuelle = questionEnCours.getBonneReponse();
 
+            // on prepare les propositions dans une liste pour pouvoir les melanger
             List<String> reponsesMelangees = new ArrayList<>();
             reponsesMelangees.add(questionEnCours.getBonneReponse());
             reponsesMelangees.add(questionEnCours.getMauvaiseReponse1());
             reponsesMelangees.add(questionEnCours.getMauvaiseReponse2());
             reponsesMelangees.add(questionEnCours.getMauvaiseReponse3());
 
+            // on melange aleatoirement pour que la bonne reponse change de bouton a chaque fois
             Collections.shuffle(reponsesMelangees);
 
             btnReponse1.setText(reponsesMelangees.get(0));
@@ -119,6 +129,7 @@ public class ExerciceAddition extends AppCompatActivity implements View.OnClickL
             btnReponse4.setText(reponsesMelangees.get(3));
 
         } else {
+            // fin du quiz on redirige vers l'ecran des scores en envoyant nos stats
             Intent intent = new Intent(ExerciceAddition.this, ResultatExerciceAddition.class);
             intent.putExtra("SCORE", score);
             intent.putExtra("DIFFICULTE", difficulteActuelle);
@@ -129,6 +140,7 @@ public class ExerciceAddition extends AppCompatActivity implements View.OnClickL
         }
     }
 
+    // compare le texte du bouton clique avec la reponse attendue
     private void verifierReponse(String reponseChoisie) {
         if (reponseChoisie.equals(bonneReponseActuelle)) {
             score++;

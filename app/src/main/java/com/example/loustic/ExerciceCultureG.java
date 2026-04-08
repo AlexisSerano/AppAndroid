@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+// activite pour la gestion des questions de culture generale
 public class ExerciceCultureG extends AppCompatActivity implements View.OnClickListener {
 
 
@@ -32,6 +33,7 @@ public class ExerciceCultureG extends AppCompatActivity implements View.OnClickL
 
     private DatabaseClient mDb;
     private List<Question> listeQuestions;
+    // index pour savoir ou on en est dans la liste des 10 questions
     private int indexQuestionActuelle = 0;
     private int score = 0;
     private String bonneReponseActuelle = "";
@@ -49,6 +51,7 @@ public class ExerciceCultureG extends AppCompatActivity implements View.OnClickL
             return insets;
         });
 
+        // on lit l'intent pour configurer le jeu selon les choix de l'utilisateur
         difficulteActuelle = getIntent().getIntExtra("DIFFICULTE", 1);
 
         mDb = DatabaseClient.getInstance(getApplicationContext());
@@ -71,9 +74,11 @@ public class ExerciceCultureG extends AppCompatActivity implements View.OnClickL
     }
 
     private void chargerQuestions() {
+        // acces a la base de donnees
         class LoadQuestionsTask extends AsyncTask<Void, Void, List<Question>> {
             @Override
             protected List<Question> doInBackground(Void... voids) {
+                // recupere 10 questions au hasard grace a la requete specifique dans le dao
                 return mDb.getAppDatabase().questionDao().getRandomQuestions("culture_g", difficulteActuelle);
             }
 
@@ -94,6 +99,7 @@ public class ExerciceCultureG extends AppCompatActivity implements View.OnClickL
         task.execute();
     }
 
+    // met a jour l'ui a chaque changement de question
     private void afficherQuestion() {
         if (indexQuestionActuelle < listeQuestions.size()) {
 
@@ -110,6 +116,7 @@ public class ExerciceCultureG extends AppCompatActivity implements View.OnClickL
             reponsesMelangees.add(questionEnCours.getMauvaiseReponse2());
             reponsesMelangees.add(questionEnCours.getMauvaiseReponse3());
 
+            // permet de pas toujours avoir la bonne reponse sur le premier bouton
             Collections.shuffle(reponsesMelangees);
 
             btnReponse1.setText(reponsesMelangees.get(0));
@@ -118,6 +125,7 @@ public class ExerciceCultureG extends AppCompatActivity implements View.OnClickL
             btnReponse4.setText(reponsesMelangees.get(3));
 
         } else {
+            // plus de questions disponibles on passe a l'activite de resultats
             Intent intent = new Intent(ExerciceCultureG.this, ResultatExerciceCultureG.class);
             intent.putExtra("SCORE", score);
             intent.putExtra("DIFFICULTE", difficulteActuelle);
@@ -128,6 +136,7 @@ public class ExerciceCultureG extends AppCompatActivity implements View.OnClickL
         }
     }
 
+    // methode pour controler si le joueur a cliqué sur la bonne reponse
     private void verifierReponse(String reponseChoisie) {
         if (reponseChoisie.equals(bonneReponseActuelle)) {
             score++;
