@@ -14,7 +14,6 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.example.loustic.db.AddUserActivity;
 import com.example.loustic.db.DatabaseClient;
 import com.example.loustic.db.User;
 
@@ -25,7 +24,7 @@ public class Connexion extends AppCompatActivity implements View.OnClickListener
     EditText inputMdp;
     Button btnConnexion;
     Button btnRetour;
-    Button btnPass;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,11 +43,10 @@ public class Connexion extends AppCompatActivity implements View.OnClickListener
         inputMdp = findViewById(R.id.inputMdp);
         btnConnexion = findViewById(R.id.btnConnexion);
         btnRetour = findViewById(R.id.btnRetour);
-        btnPass = findViewById(R.id.btnPass);
 
         btnConnexion.setOnClickListener(this);
         btnRetour.setOnClickListener(this);
-        btnPass.setOnClickListener(this);
+
 
     }
 
@@ -123,10 +121,6 @@ public class Connexion extends AppCompatActivity implements View.OnClickListener
             connectUser();
         } else if (v.getId() == btnRetour.getId()){
             Intent intent = new Intent(Connexion.this, MainActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            startActivity(intent);
-        } else if (v.getId() == btnPass.getId()){
-            Intent intent = new Intent(Connexion.this, MenuExercices.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
         }

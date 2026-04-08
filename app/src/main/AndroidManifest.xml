@@ -16,7 +16,7 @@
             android:name=".ChoixDifficulte"
             android:exported="false" />
         <activity
-            android:name=".db.AddUserActivity"
+            android:name=".AddUserActivity"
             android:exported="false" />
         <activity
             android:name=".ResultatExerciceCultureG"

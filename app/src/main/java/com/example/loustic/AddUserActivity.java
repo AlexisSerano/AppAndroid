@@ -1,4 +1,4 @@
-package com.example.loustic.db;
+package com.example.loustic;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -15,9 +15,8 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.example.loustic.Connexion;
-import com.example.loustic.MainActivity;
-import com.example.loustic.R;
+import com.example.loustic.db.DatabaseClient;
+import com.example.loustic.db.User;
 
 public class AddUserActivity extends AppCompatActivity implements View.OnClickListener {
     private DatabaseClient mDb;

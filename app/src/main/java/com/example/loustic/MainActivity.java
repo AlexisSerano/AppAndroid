@@ -12,8 +12,6 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.example.loustic.db.AddUserActivity;
-
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     Button btnConnexion;
