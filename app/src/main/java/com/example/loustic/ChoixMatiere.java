@@ -42,11 +42,13 @@ public class ChoixMatiere extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         if (v.getId() == btnAdditions.getId()){
-            Intent intent = new Intent(ChoixMatiere.this, ExerciceAddition.class);
+            Intent intent = new Intent(ChoixMatiere.this, ChoixDifficulte.class);
+            intent.putExtra("MATIERE", "addition");
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
         }else if (v.getId() == btnMultiplications.getId()){
-            Intent intent = new Intent(ChoixMatiere.this, ExerciceMultiplication.class);
+            Intent intent = new Intent(ChoixMatiere.this, ChoixDifficulte.class);
+            intent.putExtra("MATIERE", "multiplication");
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
         }else if (v.getId() == btnRetour.getId()){

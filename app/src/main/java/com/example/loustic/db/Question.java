@@ -15,7 +15,7 @@ public class Question {
     private String enonce;
     private String bonneReponse;
 
-    // On remplace l'ArrayList par 3 champs simples
+
     private String mauvaiseReponse1;
     private String mauvaiseReponse2;
     private String mauvaiseReponse3;

@@ -64,7 +64,8 @@ public class MenuExercices extends AppCompatActivity implements View.OnClickList
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
         }else if (v.getId() == btnCultureG.getId()){
-            Intent intent = new Intent(MenuExercices.this, ExerciceCultureG.class);
+            Intent intent = new Intent(MenuExercices.this, ChoixDifficulte.class);
+            intent.putExtra("MATIERE", "culture_g");
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
         }

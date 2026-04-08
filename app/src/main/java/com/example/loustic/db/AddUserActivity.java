@@ -97,49 +97,49 @@ public class AddUserActivity extends AppCompatActivity implements View.OnClickLi
 
             @Override
             protected User doInBackground(Void... voids) {
+
                 User userExist = mDb.getAppDatabase().userDao().exist(identifiant);
+
                 if (userExist != null){
-                    inputIdentifiant.setError("l'identifiant est déja utilisé veuillez en choisir un autre");
-                    inputIdentifiant.setText("");
-                }else {
+
+                    return null;
+                } else {
                     // creating a user
                     User user = new User();
                     user.setIdentifiant(identifiant);
                     user.setMdp(mdp);
 
-                    // adding to database
-                    long id = mDb.getAppDatabase()
-                            .userDao()
-                            .insert(user);
 
-
-
+                    long id = mDb.getAppDatabase().userDao().insert(user);
 
                     return user;
                 }
-
-            return null;
             }
 
             @Override
             protected void onPostExecute(User user) {
                 super.onPostExecute(user);
 
+
                 if (user == null){
+
+                    inputIdentifiant.setError("l'identifiant est déja utilisé veuillez en choisir un autre");
+                    inputIdentifiant.setText("");
+                    inputIdentifiant.requestFocus();
                     return;
                 }
-                // Quand la tache est créée, on arrête l'activité AddTaskActivity (on l'enleve de la pile d'activités)
+
+                // Si user n'est pas null, on continue l'inscription
                 setResult(RESULT_OK);
                 Intent intent = new Intent(AddUserActivity.this, Connexion.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
                 finish();
-                Toast.makeText(getApplicationContext(), "Saved", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Inscription réussie !", Toast.LENGTH_LONG).show();
             }
         }
 
-        //////////////////////////
-        // IMPORTANT bien penser à executer la demande asynchrone
+
         SaveUser su = new SaveUser();
         su.execute();
     }
